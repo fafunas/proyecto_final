@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "titulo": "Spaghetti alla puttanesca",
+    "costo": 575.0,
+    "descripcion":"algo",
+    "portada": "https://4.bp.blogspot.com/-D5Wvi_gX_Kg/WLatk_GVnKI/AAAAAAAAA5M/-y0gB26R0Dkb01QmdgfZqQALtd9NMV2DACLcB/s1600/P70301-072354.jpg"
+  },
+  {
+    "id": 2,
+    "titulo": "Pizza Napoletana ai carciofi",
+    "costo": 675.0,
+    "descripcion":"algo",
+    "portada": "https://static.cookist.it/wp-content/uploads/sites/21/2017/12/istock-480277738.jpg"
+  },
+  {
+    "id": 3,
+    "titulo": "Porchetta umbra a cottura lunga",
+    "costo": 845.0,
+    "descripcion":"algo",
+    "portada": "https://www.fontecesia.it/wp-content/uploads/2018/11/porchetta-umbra-1920x1280.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Orecchiette alle cime di rapa",
+    "costo": 845.0,
+    "descripcion":"algo",
+    "portada": "https://irepo.primecp.com/2016/03/259860/recipe-8673_ExtraLarge1000_ID-1461628.jpg"
+  },
+  {
+    "id": 5,
+    "titulo": "Asado",
+    "costo": 1145.0,
+    "descripcion":"algo",
+    "portada": "https://images.pexels.com/photos/7613432/pexels-photo-7613432.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+  },
+  {
+    "id": 6,
+    "titulo": "Pollo",
+    "costo": 750.0,
+    "descripcion":"algo",
+    "portada": "https://images.pexels.com/photos/5702789/pexels-photo-5702789.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  },
+  {
+    "id": 7,
+    "titulo": "Estofado",
+    "costo": 450.0,
+    "descripcion":"algo",
+    "portada": "https://images.pexels.com/photos/1618952/pexels-photo-1618952.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+  },
+  {
+    "id": 8,
+    "titulo": "Ensalada",
+    "costo": 145.0,
+    "descripcion":"algo",
+    "portada": "https://images.pexels.com/photos/6107789/pexels-photo-6107789.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  }
+]

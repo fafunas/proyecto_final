@@ -15,17 +15,21 @@
       ${{costo}}
     </v-card-subtitle>
 
-    <v-card-text class="text--primary">
+    <v-card-text class="text--primary ">
       
       <div>{{descripcion}}</div>
     </v-card-text>
 
-   
-      <div class="text-center ma-2">
-        <v-btn class="mx-2" fab dark color="indigo">
-            <v-icon dark> mdi-plus </v-icon>
-          </v-btn>
-      </div>
+    <v-card-actions>
+      <v-btn
+        outlined
+        rounded
+        text
+      >
+        Agregar
+      </v-btn>
+    </v-card-actions>
+     
  
   </v-card>
 </template>

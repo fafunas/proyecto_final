@@ -1,66 +1,46 @@
 <template>
   <v-card
-    class="mx-auto"
-    max-width="344"
+    class="mx-auto ma-4"
+    max-width="300"
   >
     <v-img
-      :src="portada"
+      class="white--text align-end"
       height="200px"
-    ></v-img>
+      :src="portada"
+    >
+      <v-card-title>{{titulo}}</v-card-title>
+    </v-img>
 
-    <v-card-title>
-      {{titulo}}
-    </v-card-title>
-
-    <v-card-subtitle>
-      {{costo}}
+    <v-card-subtitle class="pb-0">
+      ${{costo}}
     </v-card-subtitle>
 
-    <v-card-actions>
-      <v-btn
-        color="orange lighten-2"
-        text
-      >
-        Descirpcion
-      </v-btn>
+    <v-card-text class="text--primary">
+      
+      <div>{{descripcion}}</div>
+    </v-card-text>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-            {{descripcion}}
-
-        </v-card-text>
+   
+      <div class="text-center ma-2">
+        <v-btn class="mx-2" fab dark color="indigo">
+            <v-icon dark> mdi-plus </v-icon>
+          </v-btn>
       </div>
-    </v-expand-transition>
-  </v-card>
  
+  </v-card>
 </template>
 
 <script>
-
 export default {
+  props: {
+    titulo: String,
+    portada: String,
+    costo: Number,
+    descripcion: String,
+  },
   data() {
     return {
       show: false,
-      props:{
-          titulo:String,
-          portada: String,
-          costo: Number,
-          descripcion: String
-      }
-      
     };
   },
 };

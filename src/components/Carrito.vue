@@ -11,7 +11,7 @@
 
 <script>
 
-import comidas from '/Coderhouse/proyecto_final/src/assets/json/comidas.json'
+import comidas from '../assets/json/comidas.json'
 
     export default {
         data () {

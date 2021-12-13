@@ -4,7 +4,7 @@
       <v-row>
         
           <Listado v-for="producto in productos" :key="producto.id"
-          :producto="productos" />
+          :productos="productos" />
         
       </v-row>
     </v-container>
@@ -18,10 +18,11 @@ import axios from "axios";
 export default {
   data() {
     return {
-      productos: [],
+        productos:{}
+      
     };
   },
-
+ 
   components: { Listado },
   mounted() {
     this.obtenerProductos();

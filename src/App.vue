@@ -1,56 +1,32 @@
 <template>
-  <v-app>
-    <v-app-bar app color="blue darkeen-3">
-      <h1>Comidas</h1>
-    </v-app-bar>
-    <v-container class="pt-12 mt-12">
-    <v-row>
-      
-        <Listado v-for="(comida,i) in Comidas" :key=i
-       :titulo="comida.titulo"
-       :costo="comida.costo"
-       :portada="comida.portada"
-       :descripcion="comida.descripcion"></Listado>
-      
-    </v-row>
-    </v-container>
-       <v-container>
-    <Carrito/> 
-    </v-container>
-  </v-app>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/admin">Admin</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-import Carrito from './components/Carrito.vue'
-//import Login from './components/Login.vue'
-import Listado from './components/Listado.vue'
-import Comidas from './assets/json/comidas.json'
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  
+}
 
-export default {
-  name: 'App',
+#nav {
+  padding: 30px;
 
-  props:{
-          titulo:String,
-          portada: String,
-          costo: Number,
-          descripcion: String
-      },
-  data() {
-    return {
-      Comidas,
-            
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
     }
-  },
-
-  components: {
-   // Login,
-    Carrito,
-   Listado,
-   
-  },
-  
-
-  
-    
-};
-</script>
+  }
+}
+</style>

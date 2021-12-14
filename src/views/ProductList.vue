@@ -1,12 +1,10 @@
 <template>
   <v-app>
     <v-container>
-      <v-row>
-        
-          <Listado v-for="producto in productos" :key="producto.id"
-          :productos="productos" />
-        
-      </v-row>
+     <v-row>
+        <Listado v-for="producto in productos" :key="producto.id"
+          :productos="producto" />
+     </v-row>
     </v-container>
   </v-app>
 </template>

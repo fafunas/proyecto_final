@@ -1,18 +1,35 @@
 <template>
-  <v-card class="mx-auto ma-4" max-width="300">
-    <v-img class="white--text align-end" height="200px">
-      <v-card-title>{{ productos.name }}</v-card-title>
-    </v-img>
+  <v-card class="mx-auto ma-2 " max-width="344">
+    <v-img
+      :src="productos.portada"
+      height="200px"
+    ></v-img>
 
-    <v-card-subtitle class="pb-0"> ${{ productos.costo }} </v-card-subtitle>
+    <v-card-title>
+      {{ productos.name }}
+    </v-card-title>
 
-    <v-card-text class="text--primary">
-      <div>{{ productos.descripcion }}</div>
-    </v-card-text>
+    <v-card-subtitle> ${{ productos.costo }} </v-card-subtitle>
 
     <v-card-actions>
-      <v-btn outlined rounded text @click="consulta()"> Agregar </v-btn>
+      <v-btn color="orange lighten-2" text> Detalle </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon @click="show = !show">
+        <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
+      </v-btn>
     </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+          {{ productos.descripcion }}
+        </v-card-text>
+      </div>
+    </v-expand-transition>
   </v-card>
 </template>
 
@@ -21,22 +38,19 @@ export default {
   data() {
     return {
       show: false,
-      
     };
   },
-  
-  props:{
-    productos: Array
-    
+
+  props: {
+    productos: Array,
   },
 
-  methods:{
-    consulta(){
-      console.log("Esto deberia ser ",this.productos)
-    }
-  }
+  methods: {
+    consulta() {
+      console.log("Esto deberia ser ", this.productos);
+    },
+  },
 };
-
 </script>
 
 <style lang="scss" scoped></style>

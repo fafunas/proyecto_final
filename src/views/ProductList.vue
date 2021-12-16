@@ -3,7 +3,7 @@
     <v-container fluid>
      <v-row>
         <Listado v-for="producto in productos" :key="producto.id"
-          :productos="producto" />
+          :productos="producto"/>
      </v-row>
     </v-container>
   </v-app>

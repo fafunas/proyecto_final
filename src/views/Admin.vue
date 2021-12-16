@@ -147,6 +147,11 @@ export default {
         .get("https://61b24f08c8d4640017aaf359.mockapi.io/productos")
         .then((data) => {
           this.productos = data.data;
+        }).then((response) => {
+          console.table(response.data);
+        })
+        .catch((err) => {
+          console.error(`${err}`);
         });
     },
     agregarProducto() {
@@ -154,14 +159,26 @@ export default {
         "https://61b24f08c8d4640017aaf359.mockapi.io/productos",
         this.defaultItem,
         this.obtenerProductos()
-      );
+      )
+      .then((response) => {
+          console.table(response.data);
+        })
+        .catch((err) => {
+          console.error(`${err}`);
+        });
     },
 
     deleteItem(idProducto) {
       this.productoEliminar = idProducto;
       axios.delete(
         `https://61b24f08c8d4640017aaf359.mockapi.io/productos/${this.productoEliminar}`
-      );
+      )
+      .then((response) => {
+          console.table(response.data);
+        })
+        .catch((err) => {
+          console.error(`${err}`);
+        });
       this.obtenerProductos();
     },
 

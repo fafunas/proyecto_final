@@ -1,15 +1,15 @@
 <template>
-  <v-card class="mx-auto ma-2 " max-width="344">
+  <v-card class="mx-auto ma-4" max-width="250">
     <v-img
       :src="productos.portada"
       height="200px"
     ></v-img>
 
-    <v-card-title>
+    <v-card-title class="vtitle">
       {{ productos.name }}
     </v-card-title>
 
-    <v-card-subtitle> ${{ productos.costo }} </v-card-subtitle>
+    <v-card-subtitle class="vsubtitle"> ${{ productos.costo }} </v-card-subtitle>
 
     <v-card-actions>
       <v-btn color="orange lighten-2" text> Detalle </v-btn>
@@ -42,7 +42,7 @@ export default {
   },
 
   props: {
-    productos: Array,
+    productos: [],
   },
 
   methods: {
@@ -53,4 +53,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.vsubtitle{
+  font-size: 20px;
+}
+
+.vtitle{
+  text-align: center;
+  display: block;
+}
+
+</style>

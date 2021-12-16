@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container fluid>
      <v-row>
         <Listado v-for="producto in productos" :key="producto.id"
           :productos="producto" />
@@ -16,7 +16,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-        productos:{}
+        productos: Array
       
     };
   },

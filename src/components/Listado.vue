@@ -42,7 +42,7 @@ export default {
   },
 
   props: {
-    productos: Array,
+    productos: [],
   },
 
   methods: {

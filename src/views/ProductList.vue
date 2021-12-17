@@ -2,8 +2,11 @@
   <v-app>
     <v-container fluid>
      <v-row>
-        <Listado v-for="producto in productos" :key="producto.id"
+       
+       <v-col v-for="producto in productos" :key="producto.id">
+        <Listado
           :productos="producto"/>
+          </v-col>
      </v-row>
     </v-container>
   </v-app>

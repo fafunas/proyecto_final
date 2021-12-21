@@ -1,6 +1,13 @@
 <template>
   <v-app>
+      <img src="../assets/img/home.jpg" width="100%">
     <v-container fluid>
+    <v-row>
+      <v-col>
+        <FilterBar/>
+      </v-col>
+    </v-row>
+      
      <v-row>
        
        <v-col v-for="producto in productos" :key="producto.id">
@@ -14,6 +21,7 @@
 
 <script>
 import Listado from "../components/Listado.vue";
+import FilterBar from "../components/FilterBar.vue"
 import axios from "axios";
 
 export default {
@@ -24,7 +32,7 @@ export default {
     };
   },
  
-  components: { Listado },
+  components: { Listado,FilterBar },
   mounted() {
     this.obtenerProductos();
   },

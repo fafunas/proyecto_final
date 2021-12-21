@@ -22,31 +22,21 @@
 <script>
 import Listado from "../components/Listado.vue";
 import FilterBar from "../components/FilterBar.vue"
-import axios from "axios";
+import {mapGetters} from "vuex"
 
 export default {
-  data() {
-    return {
-        productos: Array
-      
-    };
-  },
- 
+  
   components: { Listado,FilterBar },
-  mounted() {
-    this.obtenerProductos();
+
+
+  computed:{
+    ...mapGetters(["productos"])
   },
 
-  methods: {
-    obtenerProductos() {
-      axios
-        .get("https://61b24f08c8d4640017aaf359.mockapi.io/productos")
-        .then((data) => {
-          this.productos = data.data;
-          console.log("Esto es de la vista",this.productos);
-        });
-    },
-  },
+  mounted(){
+    this.$store.dispatch("obtenerProductos")
+  }
+
 };
 </script>
 

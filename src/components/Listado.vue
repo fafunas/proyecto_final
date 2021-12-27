@@ -58,7 +58,7 @@ export default {
    
     addChart(productos){
       this.$store.dispatch("pushChart", productos)
-      console.log(this.productos)
+      //console.log(this.productos)
 
     }
   },

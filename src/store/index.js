@@ -7,12 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     productos:[],
-    chart: []
+    chart: [],
+    empty:[]
   },
   mutations: {
-    PRODUCTOS(state, paylod){
+    PRODUCTOS(state, payload){
       //Lo que venga de Paylod se guarda en productos[]
-      state.productos= paylod
+      state.productos= payload
     },
 
     //Mutacion para llenar el carrito
@@ -20,6 +21,10 @@ export default new Vuex.Store({
       state.chart.push(payload)
     
 
+    },
+
+    RESET_STATE(state) {
+      Object.assign(state,this.chart)
     }
     
     
@@ -41,8 +46,16 @@ export default new Vuex.Store({
       context.commit("PUSH_CHART",payload)
      // console.log("action")
 
-    }
+    },
 
+    resetState({ commit }) {
+      commit('RESET_STATE')
+    },
+    //addToCart ({ state, commit }, item) {
+      //
+ 
+
+   
   },
 
   getters:{

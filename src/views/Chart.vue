@@ -2,7 +2,7 @@
   <v-main class="pa-4 ma-4">
     <Carrito />
     <div class="pa-4">
-      <v-btn class="ma-2" @click="confirmSell()" color="#ff3c3c"
+      <v-btn class="ma-2" @click="resumeSell()" color="#ff3c3c"
         >Confirmar</v-btn
       >
       <br />
@@ -51,7 +51,7 @@
               </v-col>
             </v-row>
           </v-main>
-          <v-btn @click="test()">Confirmar</v-btn>
+          <v-btn @click="confirmSell()">Confirmar</v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -87,12 +87,18 @@ export default {
         this.defaultSell = Object.assign({},this.chart)
     },
 
-    test(){
+    confirmSell(){
         axios.post("https://61b24f08c8d4640017aaf359.mockapi.io/chart", this.defaultSell)
-        console.log("ultimo",this.defaultSell)
+       this.dialog= "false"
     },
 
-    confirmSell() {
+    clearChart(){
+      this.$store.dispatch("RESET_STATE")
+      //console.log(this.productos)
+
+    },
+
+    resumeSell() {
       this.dialog = true;
       this.assingItems()
 
@@ -102,6 +108,7 @@ export default {
       console.log("chart", this.chart);
       //console.log("name", this.chart["name"]);
     },
+
   },
 
   computed: {

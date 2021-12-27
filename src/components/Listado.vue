@@ -10,7 +10,7 @@
       <p >${{ productos.costo }}</p>
       <div>
         <v-btn class="mx-2" fab small dark color="indigo">
-          <v-icon dark> mdi-plus </v-icon>
+          <v-icon  @click="addChart(productos)" dark> mdi-plus </v-icon>
         </v-btn>
       </div>
     </v-card-subtitle>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   data() {
     return {
@@ -53,7 +55,17 @@ export default {
     consulta() {
       console.log("Esto deberia ser ", this.productos);
     },
+   
+    addChart(productos){
+      this.$store.dispatch("pushChart", productos)
+      console.log(this.productos)
+
+    }
   },
+
+    computed: mapState({
+    chart : state => state.chart
+  }),
 };
 </script>
 

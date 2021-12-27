@@ -1,10 +1,10 @@
 <template>
   <v-app>
-      <img src="../assets/img/home.jpg" width="100%">
+      <!-- <img src="../assets/img/home.jpg" width="100%"> -->
     <v-container fluid>
     <v-row>
       <v-col>
-        <FilterBar/>
+        <!-- <FilterBar/> -->
       </v-col>
     </v-row>
       
@@ -21,12 +21,12 @@
 
 <script>
 import Listado from "../components/Listado.vue";
-import FilterBar from "../components/FilterBar.vue"
+//import FilterBar from "../components/FilterBar.vue"
 import {mapGetters} from "vuex"
 
 export default {
   
-  components: { Listado,FilterBar },
+  components: { Listado },
 
 
   computed:{

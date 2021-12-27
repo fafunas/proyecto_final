@@ -3,6 +3,8 @@
     <v-app-bar app color="#6A76AB" dark>
       <v-app-bar-title>Shop</v-app-bar-title>
       <v-spacer></v-spacer>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/chart">Carrito</router-link>
       <v-dialog v-model="dialog" max-width="600px" min-width="360px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
@@ -21,9 +23,7 @@
     </v-main>
   </v-app>
 
-  <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/admin">Admin</router-link>
-      <router-link to="/productlist">Listado</router-link> -->
+  
 </template>
 
 <script>

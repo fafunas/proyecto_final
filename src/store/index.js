@@ -6,13 +6,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    productos:[]
+    productos:[],
+    chart: []
   },
   mutations: {
     PRODUCTOS(state, paylod){
       //Lo que venga de Paylod se guarda en productos[]
       state.productos= paylod
     },
+
+    //Mutacion para llenar el carrito
+    PUSH_CHART(state, payload){
+      state.chart.push(payload)
+    
+
+    }
     
     
   },
@@ -26,13 +34,21 @@ export default new Vuex.Store({
         
         });
 
+    },
+
+    //Enviaremos el producto a la mutacion 
+    pushChart(context,payload){
+      context.commit("PUSH_CHART",payload)
+     // console.log("action")
+
     }
+
   },
 
   getters:{
     //Traigo todos los productos
     productos: state => state.productos,
-    //Traigo las categoria de los productos
+    //Probando traer la categoria de los productos para armar los filters
     productcat : state => state.productos.filter(function(ele){
       return ele.tipo == "Kids"
     }) 

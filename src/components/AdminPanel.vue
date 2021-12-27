@@ -192,8 +192,8 @@ export default {
         .catch((err) => {
           console.error(`${err}`);
         });
-      console.log(this.editedIndex);
-      console.log(this.editedItem)
+     // console.log(this.editedIndex);
+      //console.log(this.editedItem)
       console.log(this.err);
       this.close()
     },

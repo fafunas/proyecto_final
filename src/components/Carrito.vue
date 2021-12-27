@@ -23,15 +23,11 @@ export default {
         },
         { text: "Comida", value: "name" },
         { text: "Costo", value: "costo" },
-        {text: "Cantidad", value: "action"}
+        { text: "Cantidad", value: "action"}
       ],
     };
   },
 
- /*  computed: mapState({
-    chart : state => state.chart,
-    
-  }), */
 
   computed:{
     chart(){
@@ -40,10 +36,7 @@ export default {
 
   },
 
-  mounted(){
-    this.chart
-    console.log(this.chart)
-  }
+ 
 
   
 };

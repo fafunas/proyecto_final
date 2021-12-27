@@ -51,7 +51,10 @@ export default new Vuex.Store({
     //Probando traer la categoria de los productos para armar los filters
     productcat : state => state.productos.filter(function(ele){
       return ele.tipo == "Kids"
-    }) 
+    }) ,
+
+    //Total Items Carrito
+    totalItems: state => state.chart.length
   },
   modules: {
   }

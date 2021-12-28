@@ -2,6 +2,7 @@
   <v-app>
     <v-app-bar app color="#6A76AB" dark>
       <v-app-bar-title>Shop</v-app-bar-title>
+      <router-link class="pa-2" to="/admin">  Admin  </router-link>
       <v-spacer></v-spacer>
       <router-link class="pa-2" to="/">  Home  </router-link> |
       <router-link class="pa-2 chart" to="/chart"><v-icon>mdi-cart </v-icon> {{totalItems}}</router-link>

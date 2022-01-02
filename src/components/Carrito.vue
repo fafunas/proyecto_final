@@ -22,19 +22,27 @@ export default {
           sortable: false,
         },
         { text: "Comida", value: "name" },
-        { text: "Costo", value: "costo" },
-        { text: "Cantidad", value: "action"}
+        { text: "Costo", value: "price" },
+        { text: "Cantidad", value: "quantity"}
       ],
+      chart:[]
     };
   },
 
 
-  computed:{
-    chart(){
-      return this.$store.state.chart;
-    }
+methods:{
 
-  },
+  setChart(){
+      if(localStorage.getItem('chart')){
+        this.chart = JSON.parse(localStorage.getItem('chart'))
+      }
+    },
+},
+
+mounted(){
+  this.setChart()
+  console.log('este cseria el carrito', this.chart)
+}
 
  
 

@@ -1,9 +1,19 @@
 <template>
   <v-app>
+      <!-- <img src="../assets/img/home.jpg" width="100%"> -->
     <v-container fluid>
+    <v-row>
+      <v-col>
+        <!-- <FilterBar/> -->
+      </v-col>
+    </v-row>
+      
      <v-row>
-        <Listado v-for="producto in productos" :key="producto.id"
+       
+       <v-col v-for="producto in productos" :key="producto.id">
+        <Listado
           :productos="producto"/>
+          </v-col>
      </v-row>
     </v-container>
   </v-app>
@@ -11,31 +21,22 @@
 
 <script>
 import Listado from "../components/Listado.vue";
-import axios from "axios";
+//import FilterBar from "../components/FilterBar.vue"
+import {mapGetters} from "vuex"
 
 export default {
-  data() {
-    return {
-        productos: Array
-      
-    };
-  },
- 
+  
   components: { Listado },
-  mounted() {
-    this.obtenerProductos();
+
+
+  computed:{
+    ...mapGetters(["productos"])
   },
 
-  methods: {
-    obtenerProductos() {
-      axios
-        .get("https://61b24f08c8d4640017aaf359.mockapi.io/productos")
-        .then((data) => {
-          this.productos = data.data;
-          console.log("Esto es de la vista",this.productos);
-        });
-    },
-  },
+  mounted(){
+    this.$store.dispatch("obtenerProductos")
+  }
+
 };
 </script>
 

@@ -2,7 +2,10 @@
   <v-app>
     <v-app-bar app color="#6A76AB" dark>
       <v-app-bar-title>Shop</v-app-bar-title>
+      <router-link class="pa-2" to="/admin">  Admin  </router-link>
       <v-spacer></v-spacer>
+      <router-link class="pa-2" to="/">  Home  </router-link> |
+      <router-link class="pa-2 chart" to="/chart"><v-icon>mdi-cart </v-icon> {{totalItems}}</router-link>
       <v-dialog v-model="dialog" max-width="600px" min-width="360px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
@@ -21,17 +24,20 @@
     </v-main>
   </v-app>
 
-  <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/admin">Admin</router-link>
-      <router-link to="/productlist">Listado</router-link> -->
+  
 </template>
 
 <script>
 import Login from "./components/Login.vue";
+import {mapGetters} from "vuex"
 
 export default {
  
   components: { Login },
+
+  computed:{
+    ...mapGetters(["totalItems"])
+  },
   data() {
     return {
       dialog: false,
@@ -46,6 +52,15 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+.chart{
+    text-decoration: none;
+    color:red;
+}
+
+.chart v-icon{
+  color:red;
 }
 
 #nav {

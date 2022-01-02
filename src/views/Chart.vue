@@ -19,12 +19,16 @@
                   <th>Comida</th>
                   <th>Precio</th>
                   <th>Cantidad</th>
+                  <th>Total</th>
                 </tr>
               </thead>
                 <tbody>
                   <tr v-for="item in chart" :key="item.id">
                     <td>{{ item.name }}</td>
-                    <td>{{ item.costo }}</td>
+                    <td>$ {{ item.price }}</td>
+                   
+                    <td>{{ item.quantity}}</td>
+                    <td>$ {{ item.price * item.quantity}} </td>
                   </tr>
                 </tbody>
              </table>
@@ -60,20 +64,20 @@
 
 <script>
 import Carrito from "../components/Carrito.vue";
-import axios from "axios"
+//import axios from "axios"
 
 export default {
   components: { Carrito },
   data() {
     return {
       dialog: false,
+      chart:[],
       defaultSell: {
-        name: "",
-        costo: "",
-        cantidad: "",
+        products:[],
         customerName: "",
         address: "",
         tel: "",
+        totalSell:""
       },
     };
   },
@@ -82,40 +86,57 @@ export default {
     toHome() {
       this.$router.push({ name: "Home" });
     },
-
-    assingItems(){
-        this.defaultSell = Object.assign({},this.chart)
+    setChart(){
+      if(localStorage.getItem('chart')){
+        this.chart = JSON.parse(localStorage.getItem('chart'))
+      }
     },
+
+    deleteChart(){
+      localStorage.removeItem('chart');
+    },
+
+    
+
 
     confirmSell(){
-        axios.post("https://61b24f08c8d4640017aaf359.mockapi.io/chart", this.defaultSell)
-       this.dialog= "false"
+      let total=0
+      this.chart.forEach(element =>{
+        this.defaultSell.products.push({
+          'product': element.name,
+          'quantity': element.quantity
+        })
+        total += (element.price * element.quantity)
+      })
+
+      this.defaultSell.totalSell = total
+
+      console.log("pedido", this.defaultSell)
+      this.$store.dispatch("confirmarPedido",this.defaultSell)
+      this.deleteChart()
+      this.$router.push('/')
+
     },
 
-    clearChart(){
-      this.$store.dispatch("RESET_STATE")
-      //console.log(this.productos)
-
-    },
+    
 
     resumeSell() {
       this.dialog = true;
-      this.assingItems()
+      this.setChart()
+      //this.assingItems()
 
       
       // console.log("thischart", this.productChar)
       //console.log("carrito", this.carrito)
-      console.log("chart", this.chart);
+      //console.log("chart", this.chart);
       //console.log("name", this.chart["name"]);
     },
 
-  },
+    
 
-  computed: {
-    chart() {
-      return this.$store.state.chart;
-    },
-  },
+ },
+
+ 
 };
 </script>
 

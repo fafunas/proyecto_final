@@ -7,11 +7,22 @@
     </v-card-title>
 
     <v-card-subtitle class="vsubtitle">
-      <p >${{ productos.costo }}</p>
+      <p>${{ productos.costo }}</p>
       <div>
+        <v-form v-model="valid">
+        <v-text-field
+          v-model="productChart.quantity"
+          label="Cantidad"
+          required
+          type="number"
+          min="1"
+          :rules="rules"
+        ></v-text-field>
+
         <v-btn class="mx-2" fab small dark color="indigo">
-          <v-icon  @click="addChart(productos)" dark> mdi-plus </v-icon>
+          <v-icon @click="addChart(productos)" dark> mdi-plus </v-icon>
         </v-btn>
+        </v-form>
       </div>
     </v-card-subtitle>
 
@@ -38,12 +49,23 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+//import { mapState } from "vuex";
 
 export default {
   data() {
     return {
+      valid:false,
       show: false,
+      productChart: {
+        id: "",
+        name: "",
+        price: 0,
+        quantity: 0,
+      },
+      rules: [
+      v => !!v || 'Por favor complete este campo',
+      v => v > 0 || 'Este campo debe ser mayor a 0',
+    ],
     };
   },
 
@@ -55,17 +77,43 @@ export default {
     consulta() {
       console.log("Esto deberia ser ", this.productos);
     },
-   
-    addChart(productos){
-      this.$store.dispatch("pushChart", productos)
-      //console.log(this.productos)
 
-    }
+    //With Local Storage, add items to productChart for LS
+
+    addChart(productos) {
+      if (this.valid) {
+        this.productChart.id = productos.id;
+        this.productChart.name = productos.name;
+        this.productChart.price = productos.costo;
+        this.setChart();
+        console.log(localStorage.getItem("chart"));
+        this.productChart.quantity = "0";
+      }
+    },
+
+    //Create Chart and push items in LS
+    setChart() {
+      let chart = [];
+      if (!localStorage.getItem("chart")) {
+        chart.push(this.productChart);
+        localStorage.setItem("chart", JSON.stringify(chart));
+      } else {
+        chart = JSON.parse(localStorage.getItem("chart"));
+        chart.push(this.productChart);
+        localStorage.setItem("chart", JSON.stringify(chart));
+      }
+    },
+
+    //addChart(productos){
+    // this.$store.dispatch("pushChart", productos)
+    //console.log(this.productos)
+
+    // }
   },
 
-    computed: mapState({
-    chart : state => state.chart
-  }),
+ /*  computed: mapState({
+    chart: (state) => state.chart,
+  }), */
 };
 </script>
 

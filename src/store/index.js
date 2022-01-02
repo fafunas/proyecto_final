@@ -20,9 +20,10 @@ export default new Vuex.Store({
     PUSH_CHART(state, payload){
       state.chart.push(payload)
     
-
     },
-
+    AGREGA_PEDIDO(state,payload){
+      state.productos.push(payload)
+    },
     RESET_STATE(state) {
       Object.assign(state,this.chart)
     }
@@ -53,6 +54,14 @@ export default new Vuex.Store({
     },
     //addToCart ({ state, commit }, item) {
       //
+
+      confirmarPedido(context,payload){
+        axios.post(`https://61b24f08c8d4640017aaf359.mockapi.io/pedidos`,payload)
+        .then(()=>{
+          context.commit("AGREGA_PEDIDO",payload)
+        })
+        .catch((err)=> {console.error(`${err}`)})
+      }
  
 
    

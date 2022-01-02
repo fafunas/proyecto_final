@@ -10,7 +10,11 @@
       
      <v-row>
        
-       <v-col v-for="producto in productos" :key="producto.id">
+       <v-col 
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3" v-for="producto in productos" :key="producto.id">
         <Listado
           :productos="producto"/>
           </v-col>

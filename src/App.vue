@@ -36,11 +36,13 @@ export default {
   components: { Login },
 
   computed:{
-    ...mapGetters(["totalItems"])
+   ...mapGetters(["totalItems"]),
+   // totalitems = Storage.length
   },
   data() {
     return {
       dialog: false,
+      totalitems: 0,
     };
   },
 };

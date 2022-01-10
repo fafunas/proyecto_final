@@ -202,9 +202,9 @@ export default {
       //Recibo el ID del objeto y lo asigno a una variable en la funcion
       this.editedIndex = idProducto -1 ;
       //Asigno el objeto de ese indice a editedItem
-      this.editedItem = this.productos[this.editedIndex];
+     // this.editedItem = this.productos[this.editedIndex];
       this.dialog = true;
-      console.log("Edicion", this.editedIndex)
+      console.log("Edicion", this.editedItem)
      
     },
 

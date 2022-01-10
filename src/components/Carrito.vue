@@ -41,7 +41,7 @@ methods:{
 
 mounted(){
   this.setChart()
-  console.log('este cseria el carrito', this.chart)
+  console.log('este seria el carrito', this.chart)
 }
 
  

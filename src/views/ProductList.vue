@@ -19,6 +19,7 @@
           :productos="producto"/>
           </v-col>
      </v-row>
+    
     </v-container>
   </v-app>
 </template>
@@ -30,12 +31,14 @@ import {mapGetters} from "vuex"
 
 export default {
   
-  components: { Listado },
+  components: { Listado,  },
 
 
   computed:{
     ...mapGetters(["productos"])
   },
+
+  
 
   mounted(){
     this.$store.dispatch("obtenerProductos")

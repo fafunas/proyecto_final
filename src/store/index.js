@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     productos:[],
-    chart: [],
+    Cart: [],
     empty:[]
   },
   mutations: {
@@ -17,15 +17,15 @@ export default new Vuex.Store({
     },
 
     //Mutacion para llenar el carrito
-    PUSH_CHART(state, payload){
-      state.chart.push(payload)
+    PUSH_Cart(state, payload){
+      state.Cart.push(payload)
     
     },
     AGREGA_PEDIDO(state,payload){
       state.productos.push(payload)
     },
     RESET_STATE(state) {
-      Object.assign(state,this.chart)
+      Object.assign(state,this.Cart)
     }
     
     
@@ -43,8 +43,8 @@ export default new Vuex.Store({
     },
 
     //Enviaremos el producto a la mutacion 
-    pushChart(context,payload){
-      context.commit("PUSH_CHART",payload)
+    pushCart(context,payload){
+      context.commit("PUSH_Cart",payload)
      // console.log("action")
 
     },
@@ -76,7 +76,7 @@ export default new Vuex.Store({
     }) ,
 
     //Total Items Carrito
-    totalItems: state => state.chart.length
+    totalItems: state => state.Cart.length
   },
   modules: {
   }

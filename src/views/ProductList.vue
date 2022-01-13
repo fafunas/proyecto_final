@@ -19,19 +19,20 @@
           :productos="producto"/>
           </v-col>
      </v-row>
-    
+    <Alert/>
     </v-container>
   </v-app>
 </template>
 
 <script>
 import Listado from "../components/Listado.vue";
+import Alert from "../components/Alert.vue"
 //import FilterBar from "../components/FilterBar.vue"
 import {mapGetters} from "vuex"
 
 export default {
   
-  components: { Listado,  },
+  components: { Listado, Alert },
 
 
   computed:{

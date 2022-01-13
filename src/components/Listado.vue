@@ -47,31 +47,20 @@
       </div>
     </v-expand-transition>
   </v-card>
-  <v-snackbar v-model="snackbar" :timeout="timeout">
-      {{ text }}
-
-      <template v-slot:action="{ attrs }">
-        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+ 
   </div>
     
 </template>
 
 <script>
-//import { mapState } from "vuex";
-
+//import {mapActions} from 'vuex'
 
 export default {
   data() {
     return {
       valid:false,
       show: false,
-      snackbar: false,
-      text: "",
-      timeout: 2000,
+
       productCart: {
         id: "",
         name: "",
@@ -85,7 +74,6 @@ export default {
   },
 
 
-
   props: {
     productos: [],
   
@@ -96,8 +84,7 @@ export default {
       console.log("Esto deberia ser ", this.productos);
     },
 
-
-    //With Local Storage, add items to productCart for LS
+      //With Local Storage, add items to productCart for LS
 
     addCart(productos) {
       if (this.valid) {
@@ -108,9 +95,23 @@ export default {
         this.checkItem(productos.id);
        // console.log(localStorage.getItem("Cart"));
         this.productCart.quantity = "0";
-        this.text = "Producto Agregado"
-        this.snackbar =true
+        this.confirmAlert()
+        
       }
+    },
+
+    confirmAlert(){
+      this.$store.dispatch("notification/SET_NOTIFICATION", {
+          type: "success",
+          text: "Producto Agregado Correctamente"
+        });
+    },
+
+    warningAlert(){
+      this.$store.dispatch("notification/SET_NOTIFICATION", {
+          type: "warning",
+          text: "El producto ya se encuentra en el carrito"
+        });
     },
 
     //Create Cart and push items in LS

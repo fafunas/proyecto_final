@@ -2,13 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios"
 
+import notification from './modules/notifications'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     productos:[],
     Cart: [],
-    empty:[]
+    empty:[],
+   
   },
   mutations: {
     PRODUCTOS(state, payload){
@@ -79,5 +82,6 @@ export default new Vuex.Store({
     totalItems: state => state.Cart.length
   },
   modules: {
+    notification
   }
 })

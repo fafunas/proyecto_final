@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-card class="mx-auto ma-4" max-width="250">
     <v-img :src="productos.portada" height="200px"></v-img>
 
@@ -11,7 +12,7 @@
       <div>
         <v-form v-model="valid">
         <v-text-field
-          v-model="productChart.quantity"
+          v-model="productCart.quantity"
           label="Cantidad"
           required
           type="number"
@@ -20,7 +21,7 @@
         ></v-text-field>
 
         <v-btn class="mx-2" fab small dark color="indigo">
-          <v-icon @click="addChart(productos)" dark> mdi-plus </v-icon>
+          <v-icon @click="addCart(productos)" dark> mdi-plus </v-icon>
         </v-btn>
         </v-form>
       </div>
@@ -46,17 +47,21 @@
       </div>
     </v-expand-transition>
   </v-card>
+ 
+  </div>
+    
 </template>
 
 <script>
-//import { mapState } from "vuex";
+//import {mapActions} from 'vuex'
 
 export default {
   data() {
     return {
       valid:false,
       show: false,
-      productChart: {
+
+      productCart: {
         id: "",
         name: "",
         price: 0,
@@ -64,13 +69,14 @@ export default {
       },
       rules: [
       v => !!v || 'Por favor complete este campo',
-      v => v > 0 || 'Este campo debe ser mayor a 0',
     ],
     };
   },
 
+
   props: {
     productos: [],
+  
   },
 
   methods: {
@@ -78,41 +84,64 @@ export default {
       console.log("Esto deberia ser ", this.productos);
     },
 
-    //With Local Storage, add items to productChart for LS
+      //With Local Storage, add items to productCart for LS
 
-    addChart(productos) {
+    addCart(productos) {
       if (this.valid) {
-        this.productChart.id = productos.id;
-        this.productChart.name = productos.name;
-        this.productChart.price = productos.costo;
-        this.setChart();
-        console.log(localStorage.getItem("chart"));
-        this.productChart.quantity = "0";
+        this.productCart.id = productos.id;
+        this.productCart.name = productos.name;
+        this.productCart.price = productos.costo;
+        this.setCart();
+        this.checkItem(productos.id);
+       // console.log(localStorage.getItem("Cart"));
+        this.productCart.quantity = "0";
+        this.confirmAlert()
+        
       }
     },
 
-    //Create Chart and push items in LS
-    setChart() {
-      let chart = [];
-      if (!localStorage.getItem("chart")) {
-        chart.push(this.productChart);
-        localStorage.setItem("chart", JSON.stringify(chart));
+    confirmAlert(){
+      this.$store.dispatch("notification/SET_NOTIFICATION", {
+          type: "success",
+          text: "Producto Agregado Correctamente"
+        });
+    },
+
+    warningAlert(){
+      this.$store.dispatch("notification/SET_NOTIFICATION", {
+          type: "warning",
+          text: "El producto ya se encuentra en el carrito"
+        });
+    },
+
+    //Create Cart and push items in LS
+    setCart() {
+      let Cart = [];
+      if (!localStorage.getItem("Cart")) {
+        Cart.push(this.productCart);
+        localStorage.setItem("Cart", JSON.stringify(Cart));
       } else {
-        chart = JSON.parse(localStorage.getItem("chart"));
-        chart.push(this.productChart);
-        localStorage.setItem("chart", JSON.stringify(chart));
+        Cart = JSON.parse(localStorage.getItem("Cart"));
+        Cart.push(this.productCart);
+        localStorage.setItem("Cart", JSON.stringify(Cart));
       }
     },
 
-    //addChart(productos){
-    // this.$store.dispatch("pushChart", productos)
+    checkItem(IdProducto){
+      this.Cart = JSON.parse(localStorage.getItem("Cart"))
+      let productoIndex = this.Cart.findIndex(el => el.id == IdProducto)
+      console.log(productoIndex)
+    },
+
+    //addCart(productos){
+    // this.$store.dispatch("pushCart", productos)
     //console.log(this.productos)
 
     // }
   },
 
  /*  computed: mapState({
-    chart: (state) => state.chart,
+    Cart: (state) => state.Cart,
   }), */
 };
 </script>

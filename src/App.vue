@@ -5,7 +5,7 @@
       <router-link class="pa-2" to="/admin">  Admin  </router-link>
       <v-spacer></v-spacer>
       <router-link class="pa-2" to="/">  Home  </router-link> |
-      <router-link class="pa-2 chart" to="/chart"><v-icon>mdi-cart </v-icon> {{totalItems}}</router-link>
+      <router-link class="pa-2 Cart" to="/Cart"><v-icon>mdi-cart </v-icon> {{totalitems}}</router-link>
       <v-dialog v-model="dialog" max-width="600px" min-width="360px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>
@@ -29,20 +29,16 @@
 
 <script>
 import Login from "./components/Login.vue";
-import {mapGetters} from "vuex"
+//import {mapGetters} from "vuex"
 
 export default {
  
   components: { Login },
 
-  computed:{
-   ...mapGetters(["totalItems"]),
-   // totalitems = Storage.length
-  },
   data() {
     return {
       dialog: false,
-      totalitems: 0,
+      totalitems: 0
     };
   },
 };
@@ -56,12 +52,12 @@ export default {
   text-align: center;
 }
 
-.chart{
+.Cart{
     text-decoration: none;
     color:red;
 }
 
-.chart v-icon{
+.Cart v-icon{
   color:red;
 }
 

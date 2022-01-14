@@ -23,7 +23,7 @@
                 </tr>
               </thead>
                 <tbody>
-                  <tr v-for="item in chart" :key="item.id">
+                  <tr v-for="item in Cart" :key="item.id">
                     <td>{{ item.name }}</td>
                     <td>$ {{ item.price }}</td>
                    
@@ -32,6 +32,8 @@
                   </tr>
                 </tbody>
              </table>
+             <hr>
+             <h4>Total Compra: ${{defaultSell.totalSell}} </h4>
           <v-main>
             
             <v-row>
@@ -71,13 +73,13 @@ export default {
   data() {
     return {
       dialog: false,
-      chart:[],
+      Cart:[],
       defaultSell: {
         products:[],
         customerName: "",
         address: "",
         tel: "",
-        totalSell:""
+        totalSell:0
       },
     };
   },
@@ -86,22 +88,21 @@ export default {
     toHome() {
       this.$router.push({ name: "Home" });
     },
-    setChart(){
-      if(localStorage.getItem('chart')){
-        this.chart = JSON.parse(localStorage.getItem('chart'))
+    setCart(){
+      if(localStorage.getItem('Cart')){
+        this.Cart = JSON.parse(localStorage.getItem('Cart'))
       }
     },
 
-    deleteChart(){
-      localStorage.removeItem('chart');
+    deleteCart(){
+      localStorage.removeItem('Cart');
     },
 
     
 
-
     confirmSell(){
       let total=0
-      this.chart.forEach(element =>{
+      this.Cart.forEach(element =>{
         this.defaultSell.products.push({
           'product': element.name,
           'quantity': element.quantity
@@ -111,9 +112,9 @@ export default {
 
       this.defaultSell.totalSell = total
 
-      console.log("pedido", this.defaultSell)
+      console.log("pedido", this.defaultSell.totalSell)
       this.$store.dispatch("confirmarPedido",this.defaultSell)
-      this.deleteChart()
+      this.deleteCart()
       this.$router.push('/')
 
     },
@@ -122,14 +123,14 @@ export default {
 
     resumeSell() {
       this.dialog = true;
-      this.setChart()
+      this.setCart()
       //this.assingItems()
 
       
-      // console.log("thischart", this.productChar)
+      // console.log("thisCart", this.productChar)
       //console.log("carrito", this.carrito)
-      //console.log("chart", this.chart);
-      //console.log("name", this.chart["name"]);
+      //console.log("Cart", this.Cart);
+      //console.log("name", this.Cart["name"]);
     },
 
     

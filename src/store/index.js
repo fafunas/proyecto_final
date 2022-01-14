@@ -11,12 +11,17 @@ export default new Vuex.Store({
     productos:[],
     Cart: [],
     empty:[],
+    orders:[]
    
   },
   mutations: {
     PRODUCTOS(state, payload){
       //Lo que venga de Paylod se guarda en productos[]
       state.productos= payload
+    },
+
+    ORDERS(state,payload){
+      state.orders=payload
     },
 
     //Mutacion para llenar el carrito
@@ -43,6 +48,14 @@ export default new Vuex.Store({
         
         });
 
+    },
+
+    //List of orders
+    pullOrders(context){
+      axios.get("https://61b24f08c8d4640017aaf359.mockapi.io/pedidos")
+      .then((data)=>{
+        context.commit("ORDERS",data.data)
+      })
     },
 
     //Enviaremos el producto a la mutacion 
@@ -77,6 +90,8 @@ export default new Vuex.Store({
     productcat : state => state.productos.filter(function(ele){
       return ele.tipo == "Kids"
     }) ,
+
+    orders: state =>state.orders,
 
     //Total Items Carrito
     totalItems: state => state.Cart.length

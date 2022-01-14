@@ -2,34 +2,6 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col cols="3"
-          ><h2>Agregar Producto</h2>
-          <v-text-field
-            v-model="defaultItem.name"
-            label="Nombre"
-          ></v-text-field>
-          <v-text-field
-            v-model="defaultItem.descripcion"
-            label="Descripcion"
-          ></v-text-field>
-          <v-text-field
-            v-model.number="defaultItem.costo"
-            label="Costo"
-            type="number"
-          ></v-text-field>
-          <v-text-field
-            v-model.number="defaultItem.cantidad"
-            label="Cantidad"
-            type="number"
-          ></v-text-field>
-          <v-text-field
-            v-model="defaultItem.portada"
-            label="Portada"
-          ></v-text-field>
-          <v-btn color="blue" @click="agregarProducto"
-            >Agregar Producto</v-btn
-          >
-        </v-col>
         <v-col>
           <v-data-table
             :headers="headers"
@@ -39,7 +11,8 @@
           >
             <template v-slot:top>
               <v-toolbar flat>
-                <v-toolbar-title>Tabla de Productos</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-title >Comidas</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-dialog v-model="dialog" max-width="500px">
                   <v-card>
@@ -128,13 +101,7 @@ export default {
       descripcion: "",
       portada: "",
     },
-    defaultItem: {
-      name: "",
-      costo: 0,
-      cantidad: 0,
-      descripcion: "",
-      portada: "",
-    },
+    
   }),
 
 
@@ -151,21 +118,7 @@ export default {
           console.error(`${err}`);
         });
     },
-    agregarProducto() {
-      axios.post(
-        "https://61b24f08c8d4640017aaf359.mockapi.io/productos",
-        this.defaultItem,
-        
-      )
-      .then((response) => {
-          console.table(response.data);
-          this.obtenerProductos();
-        })
-        .catch((err) => {
-          console.error(`${err}`);
-        });
-    },
-
+    
     deleteItem(idProducto) {
       this.productoEliminar = idProducto;
       axios.delete(

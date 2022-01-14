@@ -66,6 +66,7 @@ export default {
       //console.log(qty)
       
     },
+    //decrease quantity of item
     decreaseQuantity(idProduct){
      let cart = JSON.parse(localStorage.getItem("Cart"))
      let productoIndex = this.Cart.findIndex(el => el.id == idProduct)
@@ -77,7 +78,7 @@ export default {
       //console.log(idProduct)
       console.log(cart[productoIndex].quantity)
       localStorage.setItem("Cart", JSON.stringify(cart)) 
-      //console.log(qty)
+     
       
     },
 

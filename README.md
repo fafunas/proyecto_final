@@ -1,5 +1,5 @@
-# proyecto
-
+# Project on store to order food
+# Technologies used Vue2, Vuex, Vuetify, Axios
 ## Project setup
 ```
 npm install
@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+##Live Version on Digital Ocean
+https://proyecto-final-gg93s.ondigitalocean.app/

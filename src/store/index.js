@@ -30,7 +30,7 @@ export default new Vuex.Store({
     
     },
     AGREGA_PEDIDO(state,payload){
-      state.productos.push(payload)
+      state.orders.push(payload)
     },
     RESET_STATE(state) {
       Object.assign(state,this.Cart)

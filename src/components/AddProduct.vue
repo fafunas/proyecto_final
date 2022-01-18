@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-row>
-      <v-col cols="3"
+      <v-col
         ><h2>Agregar Producto</h2>
         <v-text-field v-model="defaultItem.name" label="Nombre"></v-text-field>
         <v-text-field
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
   data() {
     return {

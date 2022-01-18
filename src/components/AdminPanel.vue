@@ -49,7 +49,7 @@
                       <v-btn
                         color="blue darken-1"
                         text
-                        @click="editarProducto()"
+                        @click="saveEditProd()"
                       >
                         Save
                       </v-btn>
@@ -59,10 +59,10 @@
               </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-              <v-icon small class="mr-2" @click="cargarEdicion(item.id)">
+              <v-icon medium color="#30E587" class="mr-2" @click="cargarEdicion(item)">
                 mdi-pencil
               </v-icon>
-              <v-icon small @click="deleteItem(item.id)"> mdi-delete </v-icon>
+              <v-icon medium color="red" @click="deleteItem(item.id)"> mdi-delete </v-icon>
             </template>
           </v-data-table>
         </v-col>
@@ -134,13 +134,14 @@ export default {
       
     },
 
-    editarProducto() {
+    saveEditProd() {
       axios
         .put(
-          `https://61b24f08c8d4640017aaf359.mockapi.io/productos/${this.editedIndex+1}`, this.editedItem
+          `https://61b24f08c8d4640017aaf359.mockapi.io/productos/${this.editedIndex}`, this.editedItem
         )
         .then((response) => {
           console.table(response.data);
+          this.obtenerProductos()
         })
         .catch((err) => {
           console.error(`${err}`);
@@ -149,15 +150,20 @@ export default {
       //console.log(this.editedItem)
       console.log(this.err);
       this.close()
+      
     },
 
-    cargarEdicion(idProducto) {
-      //Recibo el ID del objeto y lo asigno a una variable en la funcion
-      this.editedIndex = idProducto -1 ;
+    cargarEdicion(item) {
+      //Recibo el Objeto
+      this.editedIndex = item.id ;
       //Asigno el objeto de ese indice a editedItem
-     // this.editedItem = this.productos[this.editedIndex];
+      this.editedItem.name = item.name
+      this.editedItem.descripcion = item.descripcion
+      this.editedItem.costo = item.costo
+      this.editedItem.portada = item.portada
+      this.editedItem.cantidad = item.cantidad
       this.dialog = true;
-      console.log("Edicion", this.editedItem)
+      console.log("Edicion", this.editedIndex)
      
     },
 

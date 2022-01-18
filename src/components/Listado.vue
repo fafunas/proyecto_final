@@ -105,6 +105,7 @@ export default {
           type: "success",
           text: "Producto Agregado Correctamente"
         });
+        //console.log("accionejecutada")
     },
 
     warningAlert(){

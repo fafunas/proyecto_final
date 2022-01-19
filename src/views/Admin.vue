@@ -1,6 +1,6 @@
 <template>
   <v-card class="ma-1">
-    <v-toolbar flat color="green" dark>
+    <v-toolbar flat color="#4F4DAF" dark>
       <v-toolbar-title>Admin Panel</v-toolbar-title>
     </v-toolbar>
     <v-tabs vertical>

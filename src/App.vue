@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app color="#6A76AB" dark>
-      <v-app-bar-title>Shop</v-app-bar-title>
+    <v-app-bar app color="#343298" dark>
+      <v-app-bar-title>Food Shop</v-app-bar-title>
       <router-link class="pa-2" to="/admin">  Admin  </router-link>
       <v-spacer></v-spacer>
       <router-link class="pa-2" to="/">  Home  </router-link> |

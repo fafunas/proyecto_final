@@ -2,34 +2,6 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col cols="3"
-          ><h2>Agregar Producto</h2>
-          <v-text-field
-            v-model="defaultItem.name"
-            label="Nombre"
-          ></v-text-field>
-          <v-text-field
-            v-model="defaultItem.descripcion"
-            label="Descripcion"
-          ></v-text-field>
-          <v-text-field
-            v-model.number="defaultItem.costo"
-            label="Costo"
-            type="number"
-          ></v-text-field>
-          <v-text-field
-            v-model.number="defaultItem.cantidad"
-            label="Cantidad"
-            type="number"
-          ></v-text-field>
-          <v-text-field
-            v-model="defaultItem.portada"
-            label="Portada"
-          ></v-text-field>
-          <v-btn color="blue" @click="agregarProducto"
-            >Agregar Producto</v-btn
-          >
-        </v-col>
         <v-col>
           <v-data-table
             :headers="headers"
@@ -39,7 +11,8 @@
           >
             <template v-slot:top>
               <v-toolbar flat>
-                <v-toolbar-title>Tabla de Productos</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-title >Comidas</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-dialog v-model="dialog" max-width="500px">
                   <v-card>
@@ -76,7 +49,7 @@
                       <v-btn
                         color="blue darken-1"
                         text
-                        @click="editarProducto()"
+                        @click="saveEditProd()"
                       >
                         Save
                       </v-btn>
@@ -86,10 +59,10 @@
               </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
-              <v-icon small class="mr-2" @click="cargarEdicion(item.id)">
+              <v-icon medium color="#30E587" class="mr-2" @click="cargarEdicion(item)">
                 mdi-pencil
               </v-icon>
-              <v-icon small @click="deleteItem(item.id)"> mdi-delete </v-icon>
+              <v-icon medium color="red" @click="deleteItem(item.id)"> mdi-delete </v-icon>
             </template>
           </v-data-table>
         </v-col>
@@ -128,13 +101,7 @@ export default {
       descripcion: "",
       portada: "",
     },
-    defaultItem: {
-      name: "",
-      costo: 0,
-      cantidad: 0,
-      descripcion: "",
-      portada: "",
-    },
+    
   }),
 
 
@@ -151,21 +118,7 @@ export default {
           console.error(`${err}`);
         });
     },
-    agregarProducto() {
-      axios.post(
-        "https://61b24f08c8d4640017aaf359.mockapi.io/productos",
-        this.defaultItem,
-        
-      )
-      .then((response) => {
-          console.table(response.data);
-          this.obtenerProductos();
-        })
-        .catch((err) => {
-          console.error(`${err}`);
-        });
-    },
-
+    
     deleteItem(idProducto) {
       this.productoEliminar = idProducto;
       axios.delete(
@@ -181,13 +134,14 @@ export default {
       
     },
 
-    editarProducto() {
+    saveEditProd() {
       axios
         .put(
-          `https://61b24f08c8d4640017aaf359.mockapi.io/productos/${this.editedIndex+1}`, this.editedItem
+          `https://61b24f08c8d4640017aaf359.mockapi.io/productos/${this.editedIndex}`, this.editedItem
         )
         .then((response) => {
           console.table(response.data);
+          this.obtenerProductos()
         })
         .catch((err) => {
           console.error(`${err}`);
@@ -196,15 +150,20 @@ export default {
       //console.log(this.editedItem)
       console.log(this.err);
       this.close()
+      
     },
 
-    cargarEdicion(idProducto) {
-      //Recibo el ID del objeto y lo asigno a una variable en la funcion
-      this.editedIndex = idProducto -1 ;
+    cargarEdicion(item) {
+      //Recibo el Objeto
+      this.editedIndex = item.id ;
       //Asigno el objeto de ese indice a editedItem
-     // this.editedItem = this.productos[this.editedIndex];
+      this.editedItem.name = item.name
+      this.editedItem.descripcion = item.descripcion
+      this.editedItem.costo = item.costo
+      this.editedItem.portada = item.portada
+      this.editedItem.cantidad = item.cantidad
       this.dialog = true;
-      console.log("Edicion", this.editedItem)
+      console.log("Edicion", this.editedIndex)
      
     },
 

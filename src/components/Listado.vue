@@ -85,19 +85,24 @@ export default {
 
     addCart(productos) {
       if (this.valid) {
-        const check = (this.Cart = JSON.parse(localStorage.getItem("Cart")));
-        const filtercart = check.filter((el) => el.id === productos.id)
-        console.log(filtercart)
-        if (filtercart === null) {
+        var cartCheck = JSON.parse(localStorage.getItem("Cart"));
+        var el = cartCheck.filter(function (el) {
+          return el.id === productos.id;
+        });
+
+        if (el.length) {
+          el[0].isChecked = productos.checked;
+          console.log("Producto ya esta")
+          this.productCart.quantity = "0";
+          this.warningAlert()
+        } else {
+          console.log(cartCheck);
           this.productCart.id = productos.id;
           this.productCart.name = productos.name;
           this.productCart.price = productos.costo;
           this.setCart();
-         // this.checkItem(productos.id);
           this.productCart.quantity = "0";
           this.confirmAlert();
-        } else {
-          console.log("El Item ya se encuentra ")
         }
       }
     },

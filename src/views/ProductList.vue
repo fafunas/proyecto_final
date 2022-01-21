@@ -19,7 +19,7 @@
           :productos="producto"/>
           </v-col>
      </v-row>
-    <Alert/>
+    <Alert class="alert"/>
     </v-container>
   </v-app>
 </template>
@@ -47,4 +47,9 @@ export default {
 
 };
 </script>
+
+<style  scoped>
+
+
+</style>
 

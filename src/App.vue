@@ -5,7 +5,7 @@
       <router-link class="pa-2" to="/admin">  Admin  </router-link>
       <v-spacer></v-spacer>
       <router-link class="pa-2" to="/">  Home  </router-link> |
-      <router-link class="pa-2 Cart" to="/Cart"><v-icon>mdi-cart </v-icon> {{totalitems}}</router-link>
+      <router-link class="pa-2 Cart" to="/Cart"> <v-badge color="green" :content="totalitems"><v-icon>mdi-cart </v-icon> </v-badge></router-link>
       <v-dialog v-model="dialog" max-width="600px" min-width="360px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" v-on="on" icon>

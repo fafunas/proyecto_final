@@ -1,5 +1,5 @@
 <template>
-  <v-alert v-model="visible" outlined shaped text :type="type">{{text}}</v-alert>
+  <v-alert class="float-right" v-model="visible" shaped :type="type">{{text}}</v-alert>
 </template>
 
 
@@ -17,5 +17,13 @@ computed:{
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
+.alert{
+  position: fixed!important;
+    z-index: 99999;
+    top: 90vh;
+    right: 5%;
+  }
+
 </style>

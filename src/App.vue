@@ -41,6 +41,24 @@ export default {
       totalitems: 0
     };
   },
+
+ 
+  mounted(){
+    if (localStorage.Cart){
+      let Cart = JSON.parse(localStorage.getItem('Cart'))
+      this.totalitems= Cart.length
+    }
+  },
+
+  watch:{
+    totalitems(newVal){
+      let Cart = JSON.parse(localStorage.getItem('Cart'))
+     // this.totalitems= Cart.length
+      Cart.length=newVal
+    }
+  }
+
+
 };
 </script>
 

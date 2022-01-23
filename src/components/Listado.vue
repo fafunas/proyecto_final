@@ -85,6 +85,10 @@ export default {
 
     addCart(productos) {
       if (this.valid) {
+        if (!localStorage.getItem("Cart")) {
+        let Cart = []
+        localStorage.setItem("Cart", JSON.stringify(Cart));
+      }
         var cartCheck = JSON.parse(localStorage.getItem("Cart"));
         var el = cartCheck.filter(function (el) {
           return el.id === productos.id;
@@ -107,6 +111,7 @@ export default {
       }
     },
 
+    
     confirmAlert() {
       this.$store.dispatch("notification/SET_NOTIFICATION", {
         type: "success",
@@ -135,15 +140,6 @@ export default {
       }
     },
 
-    checkItem(IdProducto) {
-      const check = (this.Cart = JSON.parse(localStorage.getItem("Cart")));
-      if (check.filter((el) => el.id === IdProducto)) {
-        console.log(IdProducto, "Producto se puede agregar");
-        console.log(check);
-      } else {
-        console.log(IdProducto, "Item Repetido");
-      }
-    },
   },
 };
 </script>

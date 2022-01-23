@@ -59,6 +59,7 @@ export default {
     },
 
     //increse cart item
+    //Buscar otra forma de no hacerlo con reload.
     addQuantity(idProduct) {
       let cart = JSON.parse(localStorage.getItem("Cart"));
       let productoIndex = this.Cart.findIndex((el) => el.id == idProduct);
@@ -73,6 +74,7 @@ export default {
       let productoIndex = this.Cart.findIndex((el) => el.id == idProduct);
       if (cart[productoIndex].quantity > 0) {
         cart[productoIndex].quantity--;
+        location.reload()
       }
 //      console.log(cart[productoIndex].quantity);
       localStorage.setItem("Cart", JSON.stringify(cart));

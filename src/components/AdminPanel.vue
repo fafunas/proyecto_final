@@ -68,7 +68,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-app>
+   </v-app>
 </template>
 
 <script>
@@ -104,7 +104,7 @@ export default {
     
   }),
 
-
+ 
   methods: {
     obtenerProductos() {
       axios
@@ -174,6 +174,7 @@ export default {
         this.editedIndex = -1;
       });
     },
+
 
   },
   mounted() {

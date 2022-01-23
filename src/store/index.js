@@ -90,6 +90,10 @@ export default new Vuex.Store({
     productcat : state => state.productos.filter(function(ele){
       return ele.tipo == "Kids"
     }) ,
+    //Traigo productos para el Carrousel
+    carrousel: state => state.productos.filter(function(el){
+      return el.cantidad > 10
+    }),
 
     orders: state =>state.orders,
 

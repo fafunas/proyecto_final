@@ -2,6 +2,7 @@
   <v-app>
       <!-- <img src="../assets/img/home.jpg" width="100%"> -->
     <v-container fluid>
+      <Carrousel/>
     <v-row>
       <v-col>
         <!-- <FilterBar/> -->
@@ -19,7 +20,7 @@
           :productos="producto"/>
           </v-col>
      </v-row>
-    <Alert/>
+    <Alert class="alert"/>
     </v-container>
   </v-app>
 </template>
@@ -27,12 +28,12 @@
 <script>
 import Listado from "../components/Listado.vue";
 import Alert from "../components/Alert.vue"
-//import FilterBar from "../components/FilterBar.vue"
+import Carrousel from "../components/Carrousel.vue"
 import {mapGetters} from "vuex"
 
 export default {
   
-  components: { Listado, Alert },
+  components: { Listado, Alert, Carrousel },
 
 
   computed:{
@@ -47,4 +48,9 @@ export default {
 
 };
 </script>
+
+<style  scoped>
+
+
+</style>
 

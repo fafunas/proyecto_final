@@ -172,7 +172,8 @@ export default {
     validate() {
       if (this.$refs.registerForm.validate()) {
         this.addUser()
-        this.dialog= false
+        this.dialog = false
+        console.log("Deberia es")
       }
     },
     login(){

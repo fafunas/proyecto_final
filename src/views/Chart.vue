@@ -91,6 +91,13 @@ export default {
     setCart(){
       if(localStorage.getItem('Cart')){
         this.Cart = JSON.parse(localStorage.getItem('Cart'))
+        let total= 0
+        this.Cart.forEach(ele =>{
+          total += (ele.price * ele.quantity)
+          
+       })
+       this.defaultSell.totalSell = total
+        console.log
       }
     },
 
@@ -122,15 +129,11 @@ export default {
     
 
     resumeSell() {
+
+
       this.dialog = true;
       this.setCart()
-      //this.assingItems()
-
       
-      // console.log("thisCart", this.productChar)
-      //console.log("carrito", this.carrito)
-      //console.log("Cart", this.Cart);
-      //console.log("name", this.Cart["name"]);
     },
 
     

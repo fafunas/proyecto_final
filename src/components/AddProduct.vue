@@ -55,10 +55,32 @@ export default {
       .then((response) => {
           console.table(response.data);
           this.obtenerProductos();
+          this.confirmAlert()
         })
         .catch((err) => {
           console.error(`${err}`);
         });
+    },
+
+    obtenerProductos() {
+      axios
+        .get("https://61b24f08c8d4640017aaf359.mockapi.io/productos")
+        .then((data) => {
+          this.productos = data.data;
+        }).then((response) => {
+          console.table(response.data);
+        })
+        .catch((err) => {
+          console.error(`${err}`);
+        });
+    },
+
+    confirmAlert() {
+      this.$store.dispatch("notification/SET_NOTIFICATION", {
+        type: "success",
+        text: "Producto Agregado Correctamente",
+      });
+      //console.log("accionejecutada")
     },
   }
 };

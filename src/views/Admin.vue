@@ -1,4 +1,5 @@
 <template>
+
   <v-card class="ma-1">
     <v-toolbar flat color="#4F4DAF" dark>
       <v-toolbar-title>Admin Panel</v-toolbar-title>
@@ -19,6 +20,7 @@
             <v-row>
               <v-col cols="3">
                 <AddProduct />
+                 <Alert class="alert"/>
               </v-col>
               <v-col>
                 <AdminPanel />
@@ -34,6 +36,7 @@
       </v-tab-item>
     </v-tabs>
   </v-card>
+ 
 </template>
 
 <script>
@@ -41,7 +44,9 @@ import AdminPanel from "../components/AdminPanel.vue";
 import Orders from "../components/Orders.vue";
 import AddProduct from "../components/AddProduct.vue";
 
+import Alert from '../components/Alert.vue'
+
 export default {
-  components: { AdminPanel, Orders, AddProduct },
+  components: { AdminPanel, Orders, AddProduct,Alert },
 };
 </script>

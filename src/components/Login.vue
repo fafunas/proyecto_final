@@ -137,10 +137,11 @@
 <script>
 import axios from "axios"
 import router from "vue-router"
+import {mapState} from 'vuex'
 
 export default {
   data: () => ({
-    dialog: true,
+ //   dialog: false,
     valid: true,
     tab: 0,
     nombre: "",
@@ -169,10 +170,15 @@ export default {
   }),
  
   methods: {
+    closeDialog(){
+      this.$store.dispatch("dialogs/END_DIALOG")
+    },
+
+
     validate() {
       if (this.$refs.registerForm.validate()) {
         this.addUser()
-        this.dialog = false
+        this.closeDialog()
         console.log("Deberia es")
       }
     },
@@ -217,6 +223,8 @@ export default {
     passwordMatch() {
       return () => this.defauluser.password === this.verify || "Password must match";
     },
+
+    ...mapState('dialogs',['dialog'])
   },
 };
 </script>

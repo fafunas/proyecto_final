@@ -13,7 +13,7 @@
           </v-btn>
         </template>
         <div>
-         <Login :dialog="dialog"/>
+         <Login/>
         </div>
       </v-dialog>
     </v-app-bar>
@@ -29,7 +29,7 @@
 
 <script>
 import Login from "./components/Login.vue";
-//import {mapGetters} from "vuex"
+import {mapState} from "vuex"
 
 export default {
  
@@ -37,7 +37,7 @@ export default {
 
   data() {
     return {
-      dialog: false,
+     // dialog: false,
       totalitems: 0
     };
   },
@@ -48,6 +48,10 @@ export default {
       let Cart = JSON.parse(localStorage.getItem('Cart'))
       this.totalitems= Cart.length
     }
+  },
+
+  computed:{
+    ...mapState('dialogs',['dialog'])
   },
 
   watch:{

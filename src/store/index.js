@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from "axios"
 
 import notification from './modules/notifications'
+import dialogs from './modules/dialogs'
 
 Vue.use(Vuex)
 
@@ -101,6 +102,6 @@ export default new Vuex.Store({
     totalItems: state => state.Cart.length
   },
   modules: {
-    notification
+    notification, dialogs
   }
 })

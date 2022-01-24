@@ -12,7 +12,8 @@ export default new Vuex.Store({
     productos:[],
     Cart: [],
     empty:[],
-    orders:[]
+    orders:[],
+    totalItems: 0 
    
   },
   mutations: {
@@ -35,6 +36,10 @@ export default new Vuex.Store({
     },
     RESET_STATE(state) {
       Object.assign(state,this.Cart)
+    },
+
+    ITEMSTOTALS(state, totalItems){
+      state.totalItems = totalItems
     }
     
     
@@ -78,6 +83,18 @@ export default new Vuex.Store({
           context.commit("AGREGA_PEDIDO",payload)
         })
         .catch((err)=> {console.error(`${err}`)})
+      },
+
+      //Calcular items en el carrito
+      cartItems(context){
+        let cart = JSON.parse(localStorage.getItem('Cart'))
+
+        if (cart){
+          let totalItems = cart.length
+          context.commit("ITEMSTOTALS", totalItems)
+          console.log("accion calcluar items")
+        }
+        
       }
  
 
@@ -99,7 +116,7 @@ export default new Vuex.Store({
     orders: state =>state.orders,
 
     //Total Items Carrito
-    totalItems: state => state.Cart.length
+    totalItems: state => state.totalItems
   },
   modules: {
     notification, dialogs

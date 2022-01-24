@@ -55,7 +55,8 @@ export default {
       this.Cart.splice(productoIndex, 1);
       let prodArray = JSON.stringify(this.Cart);
       localStorage.setItem("Cart", prodArray);
-      console.log("producto", productoIndex, idProducto);
+      this.$store.dispatch("cartItems")
+     // console.log("producto", productoIndex, idProducto);
     },
 
     //increse cart item

@@ -13,13 +13,18 @@ export default new Vuex.Store({
     Cart: [],
     empty:[],
     orders:[],
-    totalItems: 0 
+    totalItems: 0,
+    users:[] 
    
   },
   mutations: {
     PRODUCTOS(state, payload){
       //Lo que venga de Paylod se guarda en productos[]
       state.productos= payload
+    },
+
+    USERS(state, payload){
+      state.users= payload
     },
 
     ORDERS(state,payload){
@@ -54,6 +59,12 @@ export default new Vuex.Store({
         
         });
 
+    },
+
+    pullUsers(context){
+      axios.get("https://61b24f08c8d4640017aaf359.mockapi.io/user")
+      .then((data)=>{
+      context.commit("USERS",data.data)})
     },
 
     //List of orders

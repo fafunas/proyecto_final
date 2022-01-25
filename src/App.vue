@@ -15,6 +15,7 @@
       </v-btn>
     </v-app-bar>
     <v-main>
+      
       <router-view />
     </v-main>
     <Login/>
@@ -45,6 +46,7 @@ export default {
   computed: {
     ...mapState({
       totalItems: (state) => state.totalItems,
+      
     }),
   },
 };

@@ -185,27 +185,25 @@ export default {
       }
     },
     login(){
+      this.checkUser()
+      //console.log(this.usuarios)
       if (this.$refs.loginForm.validate()){
-          this.checkUser()
-          console.log(this.usuarios)
-
-          //this.$router.push({ name: 'Admin' })
-          //this.dialog= false
-          //console.log(this.dialog)
+        let user = this.usuarios.find(el => el.email === this.loginEmail)
+        console.log(user)
+        this.closeDialog()
+        this.$router.push('/admin');        
       }  
     },
 
     checkUser() {
       axios
-        .get("https://61b24f08c8d4640017aaf359.mockapi.io/user")
-        .then((data) => {
-          this.usuarios = data.data;
-        }).then((response) => {
-          console.table(response.data);
-        })
-        .catch((err) => {
-          console.error(`${err}`);
-        });
+          .get("https://61b24f08c8d4640017aaf359.mockapi.io/user")
+          .then((data)=>{
+            this.usuarios= data.data
+            //console.log(this.usuarios)
+          })
+        
+          .catch((err) => {console.error(`${err}`)})
     },
    
     addUser() {

@@ -107,6 +107,7 @@ export default {
           this.setCart();
           this.productCart.quantity = "0";
           this.confirmAlert();
+          this.$store.dispatch("cartItems")
         }
       }
     },

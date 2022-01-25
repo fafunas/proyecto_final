@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from "axios"
 
 import notification from './modules/notifications'
+import dialogs from './modules/dialogs'
 
 Vue.use(Vuex)
 
@@ -11,13 +12,19 @@ export default new Vuex.Store({
     productos:[],
     Cart: [],
     empty:[],
-    orders:[]
+    orders:[],
+    totalItems: 0,
+    users:[] 
    
   },
   mutations: {
     PRODUCTOS(state, payload){
       //Lo que venga de Paylod se guarda en productos[]
       state.productos= payload
+    },
+
+    USERS(state, payload){
+      state.users= payload
     },
 
     ORDERS(state,payload){
@@ -34,6 +41,10 @@ export default new Vuex.Store({
     },
     RESET_STATE(state) {
       Object.assign(state,this.Cart)
+    },
+
+    ITEMSTOTALS(state, totalItems){
+      state.totalItems = totalItems
     }
     
     
@@ -48,6 +59,12 @@ export default new Vuex.Store({
         
         });
 
+    },
+
+    pullUsers(context){
+      axios.get("https://61b24f08c8d4640017aaf359.mockapi.io/user")
+      .then((data)=>{
+      context.commit("USERS",data.data)})
     },
 
     //List of orders
@@ -77,6 +94,18 @@ export default new Vuex.Store({
           context.commit("AGREGA_PEDIDO",payload)
         })
         .catch((err)=> {console.error(`${err}`)})
+      },
+
+      //Calcular items en el carrito
+      cartItems(context){
+        let cart = JSON.parse(localStorage.getItem('Cart'))
+
+        if (cart){
+          let totalItems = cart.length
+          context.commit("ITEMSTOTALS", totalItems)
+          console.log("accion calcluar items")
+        }
+        
       }
  
 
@@ -98,9 +127,9 @@ export default new Vuex.Store({
     orders: state =>state.orders,
 
     //Total Items Carrito
-    totalItems: state => state.Cart.length
+    totalItems: state => state.totalItems
   },
   modules: {
-    notification
+    notification, dialogs
   }
 })

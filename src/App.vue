@@ -9,16 +9,14 @@
           ><v-icon>mdi-cart </v-icon>
         </v-badge></router-link
       >
-
       <v-btn @click="showDialog()" icon>
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
-      
       <router-view />
     </v-main>
-     <Login/>
+    <Login />
   </v-app>
 </template>
 
@@ -27,7 +25,7 @@ import Login from "./components/Login.vue";
 import { mapState } from "vuex";
 
 export default {
-   components:{Login},
+  components: { Login },
 
   data() {
     return {
@@ -36,17 +34,15 @@ export default {
     };
   },
 
-  methods:{
-    showDialog(){
-      this.$store.dispatch("dialogs/SET_DIALOG")
-      
-    }
+  methods: {
+    showDialog() {
+      this.$store.dispatch("dialogs/SET_DIALOG");
+    },
   },
 
   computed: {
     ...mapState({
       totalItems: (state) => state.totalItems,
-      
     }),
   },
 };

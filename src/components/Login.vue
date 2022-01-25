@@ -186,7 +186,7 @@ export default {
     },
     login() {
       this.checkUser();
-      console.log(this.usuarios)
+      //console.log(this.usuarios)
       if (this.$refs.loginForm.validate()) {
         let user = this.usuarios.find((el) => el.email === this.loginEmail);
         if (user) {

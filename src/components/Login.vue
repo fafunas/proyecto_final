@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <v-dialog width="600px" v-model="dialog">
     
         <v-tabs
           v-model="tab"
@@ -130,14 +131,15 @@
             </v-card>
           </v-tab-item>
         </v-tabs>
-   
+   </v-dialog>
   </v-app>
 </template>
 
 <script>
 import axios from "axios"
 import router from "vue-router"
-import {mapState} from 'vuex'
+import { mapState } from 'vuex';
+//import {mapState} from 'vuex'
 
 export default {
   data: () => ({
@@ -224,7 +226,12 @@ export default {
       return () => this.defauluser.password === this.verify || "Password must match";
     },
 
-    ...mapState('dialogs',['dialog'])
+    ...mapState({
+      dialog: state=> state.dialogs.dialog,
+    })
+
+     
+
   },
 };
 </script>

@@ -15,12 +15,12 @@ export default{
 
         },
 
-        actios:{
-            SET_DIALOG:({commit})=>{
+        actions:{
+            SET_DIALOG({commit}){
                 commit("SHOW_DIALOG")
             },
-            END_DIALOG:({commit})=>{
-                commit("CLOSE_DIALOG")
+            END_DIALOG({commit}){
+                commit('CLOSE_DIALOG')
                 console.log("enddialog")
             }
             

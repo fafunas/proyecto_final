@@ -2,57 +2,51 @@
   <v-app>
     <v-app-bar app color="#343298" dark>
       <v-app-bar-title>Food Shop</v-app-bar-title>
-      <router-link class="pa-2" to="/admin">  Admin  </router-link>
       <v-spacer></v-spacer>
-      <router-link class="pa-2" to="/">  Home  </router-link> |
-      <router-link class="pa-2 Cart" to="/Cart"> <v-badge color="green" :content="totalItems"><v-icon>mdi-cart </v-icon> </v-badge></router-link>
-      <v-dialog v-model="dialog" max-width="600px" min-width="360px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" v-on="on" icon>
-            <v-icon>mdi-account</v-icon>
-          </v-btn>
-        </template>
-        <div>
-         <Login/>
-        </div>
-      </v-dialog>
+      <router-link class="pa-2" to="/"> Home </router-link> |
+      <router-link class="pa-2 Cart" to="/Cart">
+        <v-badge color="green" :content="totalItems"
+          ><v-icon>mdi-cart </v-icon>
+        </v-badge></router-link
+      >
+
+      <v-btn @click="showDialog()" icon>
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
-       
       <router-view />
-      <v-dialog></v-dialog>
     </v-main>
+    <Login/>
   </v-app>
-
-  
 </template>
 
 <script>
 import Login from "./components/Login.vue";
-import {mapState} from "vuex"
+import { mapState } from "vuex";
 
 export default {
- 
-  components: { Login },
+   components:{Login},
 
   data() {
     return {
-     // dialog: false,
-     // totalitems: 0
+      // dialog: false,
+      // totalitems: 0
     };
   },
 
- 
-  
-
-  computed:{
-    ...mapState(['totalItems'])
+  methods:{
+    showDialog(){
+      this.$store.dispatch("dialogs/SET_DIALOG")
+      
+    }
   },
 
- 
-  
-
-
+  computed: {
+    ...mapState({
+      totalItems: (state) => state.totalItems,
+    }),
+  },
 };
 </script>
 
@@ -64,17 +58,16 @@ export default {
   text-align: center;
 }
 
-.Cart{
-    text-decoration: none;
-    color:red;
+.Cart {
+  text-decoration: none;
+  color: red;
 }
 
-.Cart v-icon{
-  color:red;
+.Cart v-icon {
+  color: red;
 }
 
-.v-application a{
-  color : white !important;
+.v-application a {
+  color: white !important;
 }
-
 </style>

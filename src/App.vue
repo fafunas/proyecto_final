@@ -18,7 +18,7 @@
       
       <router-view />
     </v-main>
-    <Login/>
+     <Login/>
   </v-app>
 </template>
 
